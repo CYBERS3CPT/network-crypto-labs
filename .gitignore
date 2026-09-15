@@ -1,0 +1,22 @@
+# Captures, logs and anything a lab run produces.
+# If it came out of tcpdump, script(1) or tshark, it belongs on your laptop, not here.
+*.pcap
+*.pcapng
+*.log
+*.cap
+out/
+output/
+evidence/
+flow-table-*.md
+
+# Credentials. Nobody plans to commit these. People still do.
+.env
+*.pem
+*.key
+
+# The usual suspects
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
