@@ -2,6 +2,7 @@
 # If it came out of tcpdump, script(1) or tshark, it belongs on your laptop, not here.
 *.pcap
 *.pcapng
+!examples/*.pcap
 *.log
 *.cap
 out/

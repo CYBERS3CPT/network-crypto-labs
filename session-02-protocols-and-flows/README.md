@@ -448,7 +448,8 @@ capture point cannot tell you about. Notice that, and write it down.)
 other two blank, on purpose:
 
 ```bash
-./flow-table.py s2_flows.pcap --capture-point "eth1, no filter"
+./flow-table.py ../examples/s2_sample.pcap                       # what it looks like when it works
+./flow-table.py s2_flows.pcap --capture-point "eth1, no filter"  # now yours
 ```
 
 **Then three sentences.** One flow you expected and saw. One you did not

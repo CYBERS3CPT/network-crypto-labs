@@ -32,6 +32,7 @@ transfers to a job.
 
 ```
 templates/session-log.md            how to keep the log, and the flow-table columns
+examples/s2_sample.pcap             exercise 10, as it looks when it works. Try the script on this first
 
 session-02-protocols-and-flows/     Ethernet, IP, routing, TCP, UDP, conntrack, DNS, DHCP,
                                     exposure and visibility. Ten exercises.
@@ -84,6 +85,7 @@ A few things here will refuse to do what you ask, briefly and with a reason:
 |---|---|
 | `flow-table.py` | Filling in the *expected* column for you. It can count packets. It cannot know what you thought would happen, and that column is the whole exercise. |
 | `flow-table.py` | Calling a UDP flow with no reply "closed". No reply on UDP means no reply. It does not mean anything else, and the script will not pretend otherwise. |
+| `flow-table.py` | Hiding silent flows. A single SYN with no answer is one packet and a finding; it is listed by default, and `--min-packets` is how you opt out. |
 | `lab-check.sh` | Guessing which interface is your lab segment. It shows you the addresses and lets you decide, because "the traffic leaves through eth0" is an assumption until `ip route get` says so. |
 
 ## Two conventions
