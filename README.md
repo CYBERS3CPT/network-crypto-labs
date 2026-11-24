@@ -39,6 +39,21 @@ session-02-protocols-and-flows/     Ethernet, IP, routing, TCP, UDP, conntrack, 
     README.md                       the exercises, explained
     lab-check.sh                    are the tools there, which interface is which
     flow-table.py                   pcap in, five-tuple table out (you still fill in the thinking)
+
+session-04-network-controls/        Firewalls, IDS/IPS, secure administration, segmentation,
+                                    DMZs, NAC, policy design, placement and validation. Ten
+                                    exercises, all inside one Kali — no second VM needed.
+    README.md                       the exercises, explained
+    s4-lab.sh                       builds a four-zone company out of namespaces; installs `on`
+    zones.nft                       the firewall policy (one rule left for you to write)
+    s4-ids.rules / s4-ips.rules     the same three signatures, watching vs blocking
+
+session-10-wireless-remote-work/    WPA2/WPA3, enterprise Wi-Fi, rogue APs, guest networks, VPN,
+                                    posture and VDI. Thirteen exercises and a final challenge.
+    README.md                       the exercises, explained
+    make-air.py                     builds air.pcap: one minute of Wi-Fi outside an office
+    s10-lab.sh                      a café, an office and a WireGuard gateway, out of namespaces
+    posture.sh                      the questions a device-posture check asks, of your own Kali
 ```
 
 Every folder has its own README. Every script answers `--help`.
