@@ -1,0 +1,37 @@
+# zones.nft — the ACME firewall policy, one rule per line of the flow matrix.
+# Load it with:   on fw nft -f zones.nft
+# It replaces everything the firewall had before.
+
+flush ruleset
+
+define WEB = 10.10.10.10
+define PC  = 10.10.20.20
+define DB  = 10.10.30.30
+
+table inet s4 {
+  chain forward {
+    type filter hook forward priority 0; policy drop;
+
+    # 1. Replies to conversations we already allowed. Without this line, nothing works.
+    ct state established,related accept
+    ct state invalid drop
+
+    # 2. INTERNET -> DMZ: the public website, and nothing else
+    iifname "fw-out" oifname "fw-dmz" ip daddr $WEB tcp dport 80 accept
+
+    # 3. LAN -> DMZ: users visit the site, admins manage it
+    iifname "fw-lan" oifname "fw-dmz" ip daddr $WEB tcp dport { 80, 22 } accept
+
+    # 4. LAN -> DATA: administration only (SSH). Nobody queries the database by hand.
+    iifname "fw-lan" oifname "fw-data" ip daddr $DB tcp dport 22 accept
+
+    # 5. LAN -> INTERNET: users may browse
+    iifname "fw-lan" oifname "fw-out" tcp dport { 80, 443 } accept
+
+    # 6. DMZ -> DATA: the web application talks to its database
+    # TODO (exercise 6): write this rule yourself. From $WEB, to $DB, TCP port 3306.
+
+    # 7. Everything else: count it, log it, drop it
+    counter log prefix "S4-DROP " drop
+  }
+}

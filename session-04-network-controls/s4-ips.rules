@@ -1,0 +1,5 @@
+# s4-ips.rules — the same idea as rule 1 in s4-ids.rules, with one word changed.
+# "alert" writes a line in a log. "drop" throws the packet away. That word is the
+# whole difference between an IDS and an IPS.
+
+drop http any any -> any any (msg:"S4 IPS: blocked request for /etc/passwd"; http.uri; content:"/etc/passwd"; sid:4000101; rev:1;)
